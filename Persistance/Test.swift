@@ -8,9 +8,9 @@
 import Foundation
 import RealmSwift
 
-class TestObject: Object {
+public class TestObject: Object {
     @Persisted(primaryKey: true) var id: ObjectId = ObjectId.generate()
-    @Persisted var name: String
+    @Persisted public var name: String
 }
 
 public class Test {
