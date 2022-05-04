@@ -8,17 +8,22 @@
 import Foundation
 import RealmSwift
 
-public class TestObject: Object {
+class TestObject: Object {
     @Persisted(primaryKey: true) var id: ObjectId = ObjectId.generate()
-    @Persisted public var name: String
+    @Persisted var name: String
+
+    convenience init(name: String) {
+        self.init()
+        self.name = name
+    }
 }
 
 public class Test {
+    public init() {}
     public func writeTestObjectWithName(_ name: String) {
         let realm = try! Realm()
         try! realm.write {
-            let testObject = TestObject()
-            testObject.name = name
+            let testObject = TestObject(name: name)
             realm.add(testObject)
         }
     }
